@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-   <head> 
+   <head>
       <title>GK Quiz</title>
       <link rel="stylesheet" href="style.css">
       <style>
@@ -84,7 +84,7 @@
             <label for ='third-option' class='label' id='third-label'>Sagar</label></br>
             <input type='radio' id='forth-option' value='forth' name='option'></input>
             <label for ='forth-option' class='label' id='forth-label'>Sagar</label></br>
-            <button type='submit' id='submit-button' value=''>Submit</button>
+            <button type='submit' id='submit-button' value=''>Next</button>
          </form>
          <div id='toggle'>
             <p id="toggle-p" class='new '>A</p>
@@ -118,10 +118,10 @@
          	//{
          
          let i=0;
-         
+         console.log(question1[i].opt[3]);
          let question = question1.forEach((a)=>{
          
-         console.log(question1.length);
+         
          let mainQuestion = document.getElementById('Main-question');
          let submit = document.getElementById('submit-button');
          let toggle = document.getElementById('toggle-p');
@@ -158,23 +158,23 @@
          
          })
          
-         
+         let totalMarks=0;
          submit.addEventListener('click',()=>{
          if(submit.value==''){
          	alert('Please Select Answer');
          }
          else if(submit.value==question1[i].correct)
          	{
-         		
+         		let marks= totalMarks+10;
+				toggle.innerHTML="Total Marks: "+marks;
          		toggle.classList.add('right');
-         		toggle.innerHTML='Correct :) ';
-         		//toggle.style.backgroundColor:'green';
          		event.preventDefault();
          	}
          	else{
-                  toggle.classList.add('wrong');
+                 toggle.classList.add('wrong');
          		 toggle.innerHTML='Wrong :( ';
-         		 //toggle.style.backgroundColor:'red';
+				 let marks= totalMarks+0;
+				 toggle.innerHTML="Total Marks: "+marks;
          		 event.preventDefault();
          	}
          })
@@ -190,7 +190,7 @@
          let Forthoption = document.getElementById('forth-option');
          Forthoption.value = question1[i].opt[3];
          
-         
+         console.log('Total marks are: ', marks );
          
          }
          );
@@ -204,3 +204,58 @@
       </script>
    </body>
 </html>
+
+
+
+
+Certainly! If you want to create a project in simple JavaScript before moving on to React, here's a project idea that covers various aspects of JavaScript:
+
+**Project: Interactive Quiz App**
+
+**Features to Implement:**
+
+1. Display questions and multiple-choice options.
+2. Allow the user to select an option.
+3. Display the user's score after completing the quiz.
+4. Add a timer for each question.
+5. Implement a "Next" button to move to the next question.
+6. Track the user's progress through the quiz.
+
+**Topics Covered:**
+
+1. **DOM Manipulation:**
+   - Create HTML elements to display questions, options, and scores.
+   - Use JavaScript to manipulate the DOM to update content based on user interactions.
+
+2. **Event Handling:**
+   - Attach event listeners to buttons and options to handle user input.
+
+3. **Arrays and Objects:**
+   - Store quiz questions and options in data structures (arrays and objects).
+
+4. **Conditional Statements:**
+   - Use conditional statements to check the user's answer and calculate the score.
+
+5. **Timers:**
+   - Implement a countdown timer for each question using JavaScript's `setInterval`.
+
+6. **Progress Tracking:**
+   - Keep track of the user's progress through the quiz and update the UI accordingly.
+
+7. **Styling:**
+   - Apply CSS styles to create an attractive and user-friendly interface.
+
+**Project Steps:**
+
+1. Create the HTML structure for the quiz interface.
+2. Define an array of quiz questions, each containing the question text, options, and the correct answer.
+3. Use JavaScript to display the first question and its options.
+4. Implement event listeners for option buttons to check the user's answer and update the score.
+5. Add a timer that counts down for each question.
+6. Display the user's score after completing all the questions.
+7. Implement a "Next" button to move to the next question.
+8. Update the UI to show the user's progress and remaining time.
+
+This project will help you solidify your understanding of core JavaScript concepts 
+like DOM manipulation, event handling, arrays, objects, conditionals, and timers. 
+It's a great stepping stone before diving into more complex libraries and frameworks like React.
