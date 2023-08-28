@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+   <head> 
+      <title>GK Quiz</title>
+      <link rel="stylesheet" href="style.css">
+      <style>
+         *{
+         margin:0;
+         padding:0;
+         box-sizing:border-box;
+         }
+         body{
+         background-color:black;
+         color:white;
+         }
+         /* Header */
+         .Quiz-header{
+         text-align:Center;
+         }
+         .Quiz-header h1{
+         font-family:sans-serif;
+         font-weight:400;
+         padding:1rem;
+         color:lightblue;
+         }
+         .main-body-template h1{
+         background-color:white;
+         color:black;
+         padding:.8rem;
+         }
+         label{
+         display:inline;
+         line-height:1.5rem;
+         }
+         input{
+         margin:1rem .4rem .4rem 2rem;
+         line-height:1.5rem;
+         }
+         #submit-button{
+         padding:.5rem;
+         border-radius:8px;
+         margin:2rem;
+         }
+         #toggle{
+         min-height:2rem;
+         }
+         .new{
+         display:none;
+         }
+         .right{
+         background-color:green;
+         color:white;
+         Text-align:center;
+         padding:.5rem;
+         display:block;
+         }
+         .wrong{
+         background-color:red;
+         color:white;
+         Text-align:center;
+         padding:.5rem;
+         display:block;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- header -->
+      <header class="Quiz-header">
+         <h1>GK Quiz</h1>
+      </header>
+      <hr>
+      <!-- Body -->
+      <div id='parent-div'>
+      </div>
+      <!-- <template> -->
+      <section class='main-body-template' id='main-body-template'>
+         <h1 id='Main-question'>What is your name</h1>
+         <form action=''>
+            <input type='radio' id='first-option' value='Sagar' name='option'></input>
+            <label for ='first-option' class='label' id='first-label'>Sagar</label><br>
+            <input type='radio' id='Second-option' value='Second' name='option'></input>
+            <label for ='Second-option' class='label' id='second-label'>Sagar</label><br>
+            <input type='radio' id='third-option' value='third' name='option'></input>
+            <label for ='third-option' class='label' id='third-label'>Sagar</label></br>
+            <input type='radio' id='forth-option' value='forth' name='option'></input>
+            <label for ='forth-option' class='label' id='forth-label'>Sagar</label></br>
+            <button type='submit' id='submit-button' value=''>Submit</button>
+         </form>
+         <div id='toggle'>
+            <p id="toggle-p" class='new '>A</p>
+         </div>
+      </section>
+      <!-- </template> -->
+      <script>
+         const question1 = [
+           {
+             ques: 'What is the capital of France?',
+             opt: ['Paris', 'Berlin', 'London', 'Madrid'],
+             correct: 'Paris',
+           },
+           {
+             ques: 'Which planet is known as the "Red Planet"?',
+             opt: ['Mars', 'Venus', 'Jupiter', 'Saturn'],
+             correct: 'Mars',
+           }
+         ];
+         
+         
+         
+         //function quizLogic(arr){
+         
+          //let ParentDiv = document.getElementById('parent-div');
+         		//let MainTemplate = document.getElementById('main-body-template');
+         		  // let template = MainTemplate.content.cloneNode(true);
+          // console.log(template);
+         
+         	//ParentDiv.append(template);
+         	//{
+         
+         let i=0;
+         
+         let question = question1.forEach((a)=>{
+         
+         console.log(question1.length);
+         let mainQuestion = document.getElementById('Main-question');
+         let submit = document.getElementById('submit-button');
+         let toggle = document.getElementById('toggle-p');
+         
+         
+         
+         mainQuestion.innerHTML = question1[i].ques;
+         //console.log(question1[i].opt[0]);
+         let option = document.getElementById('first-label');
+         option.innerHTML = question1[i].opt[0];
+         option.addEventListener('click',()=>{
+         submit.value=question1[i].opt[0];
+         console.log(question1[0].opt[0]);
+         })
+         let option1 = document.getElementById('second-label');
+         option1.innerHTML = question1[i].opt[1];
+         option1.addEventListener('click',()=>{
+         submit.value=question1[i].opt[1];
+         console.log(question1[i].opt[1]);
+         
+         })
+         let option2 = document.getElementById('third-label');
+         option2.innerHTML = question1[i].opt[2];
+         option2.addEventListener('click',()=>{
+         submit.value=question1[i].opt[2];
+         console.log(question1[i].opt[2]);
+         
+         })
+         let option3 = document.getElementById('forth-label');
+         option3.innerHTML = question1[i].opt[3];
+         option3.addEventListener('click',()=>{
+         submit.value=question1[i].opt[3];
+         console.log(question1[i].opt[3]);
+         
+         })
+         
+         
+         submit.addEventListener('click',()=>{
+         if(submit.value==''){
+         	alert('Please Select Answer');
+         }
+         else if(submit.value==question1[i].correct)
+         	{
+         		
+         		toggle.classList.add('right');
+         		toggle.innerHTML='Correct :) ';
+         		//toggle.style.backgroundColor:'green';
+         		event.preventDefault();
+         	}
+         	else{
+                  toggle.classList.add('wrong');
+         		 toggle.innerHTML='Wrong :( ';
+         		 //toggle.style.backgroundColor:'red';
+         		 event.preventDefault();
+         	}
+         })
+         
+         
+         
+         let Firstoption = document.getElementById('first-option');
+         Firstoption.value = question1[i].opt[0];
+         let Secondoption = document.getElementById('Second-option');
+         Secondoption.value = question1[i].opt[1];
+         let Thirdoption = document.getElementById('third-option');
+         Thirdoption.value = question1[i].opt[2];
+         let Forthoption = document.getElementById('forth-option');
+         Forthoption.value = question1[i].opt[3];
+         
+         
+         
+         }
+         );
+         	//};
+         
+         //};
+         
+         //quizLogic(question1);
+         
+         
+      </script>
+   </body>
+</html>
