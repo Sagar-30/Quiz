@@ -2,7 +2,7 @@
 <html>
    <head>
       <title>GK Quiz</title>
-      <link rel="stylesheet" href="style.css">
+<!--       <link rel="stylesheet" href="style.css">       -->     
       <style>
          *{
          margin:0;
@@ -72,190 +72,203 @@
       <!-- Body -->
       <div id='parent-div'>
       </div>
-      <!-- <template> -->
+
+	  <!-- Main template -->
+       <template id='Top-template'> 
       <section class='main-body-template' id='main-body-template'>
-         <h1 id='Main-question'>What is your name</h1>
+         <h1 id="question-main">What is your name</h1>
          <form action=''>
-            <input type='radio' id='first-option' value='Sagar' name='option'></input>
-            <label for ='first-option' class='label' id='first-label'>Sagar</label><br>
-            <input type='radio' id='Second-option' value='Second' name='option'></input>
-            <label for ='Second-option' class='label' id='second-label'>Sagar</label><br>
-            <input type='radio' id='third-option' value='third' name='option'></input>
-            <label for ='third-option' class='label' id='third-label'>Sagar</label></br>
-            <input type='radio' id='forth-option' value='forth' name='option'></input>
-            <label for ='forth-option' class='label' id='forth-label'>Sagar</label></br>
-            <button type='submit' id='submit-button' value=''>Next</button>
+            <input class='checked' type='radio' id='option-0' value='Sagar' name='option'></input>
+            <label for ='option-0' class='label' id='label-0'>Sagar</label><br>
+            <input class='checked' type='radio' id='option-1' value='Second' name='option'></input>
+            <label for ='option-1' class='label' id='label-1'>Sagar</label><br>
+            <input class='checked' type='radio' id='option-2' value='third' name='option'></input>
+            <label for ='option-2' class='label' id='label-2'>Sagar</label></br>
+            <input class='checked' type='radio' id='option-3' value='forth' name='option'></input>
+            <label for ='option-3' class='label' id='label-3'>Sagar</label></br>
+            <button type='submit' id='submit-button' value=''>Save</button>
          </form>
          <div id='toggle'>
-            <p id="toggle-p" class='new '>A</p>
+            <p id="toggle-p" class='new visible'>A</p>
          </div>
       </section>
-      <!-- </template> -->
+      </template>
+
+
       <script>
-         const question1 = [
-           {
-             ques: 'What is the capital of France?',
-             opt: ['Paris', 'Berlin', 'London', 'Madrid'],
-             correct: 'Paris',
-           },
-           {
-             ques: 'Which planet is known as the "Red Planet"?',
-             opt: ['Mars', 'Venus', 'Jupiter', 'Saturn'],
-             correct: 'Mars',
-           }
-         ];
+   const questions = [
+    {
+        "ques": "What is the capital of France?",
+        "opt": ["Paris", "Berlin", "London", "Madrid"],
+        "correct": "Paris"
+    },
+    {
+        "ques": "Which planet is known as the \"Red Planet\"?",
+        "opt": ["Mars", "Venus", "Jupiter", "Saturn"],
+        "correct": "Mars"
+    },
+    {
+        "ques": "What is the largest mammal?",
+        "opt": ["Blue Whale", "African Elephant", "Giraffe", "Polar Bear"],
+        "correct": "Blue Whale"
+    },
+    {
+        "ques": "Who painted the Mona Lisa?",
+        "opt": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+        "correct": "Leonardo da Vinci"
+    },
+    {
+        "ques": "Which gas do plants use for photosynthesis?",
+        "opt": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+        "correct": "Carbon Dioxide"
+    },
+    {
+        "ques": "What is the chemical symbol for gold?",
+        "opt": ["Au", "Ag", "Fe", "Cu"],
+        "correct": "Au"
+    },
+    {
+        "ques": "Which famous scientist developed the theory of relativity?",
+        "opt": ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Marie Curie"],
+        "correct": "Albert Einstein"
+    },
+    {
+        "ques": "Which instrument is used to measure earthquakes?",
+        "opt": ["Seismometer", "Barometer", "Thermometer", "Hydrometer"],
+        "correct": "Seismometer"
+    },
+    {
+        "ques": "Which country is known as the \"Land of the Rising Sun\"?",
+        "opt": ["Japan", "China", "South Korea", "Vietnam"],
+        "correct": "Japan"
+    },
+    {
+        "ques": "Which river is the longest in the world?",
+        "opt": ["Nile", "Amazon", "Mississippi", "Yangtze"],
+        "correct": "Nile"
+    },
+    {
+        "ques": "What is the currency of Japan?",
+        "opt": ["Yen", "Dollar", "Euro", "Pound"],
+        "correct": "Yen"
+    },
+    {
+        "ques": "Which gas is responsible for the greenhouse effect on Earth?",
+        "opt": ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+        "correct": "Carbon Dioxide"
+    },
+    {
+        "ques": "Who wrote the play 'Romeo and Juliet'?",
+        "opt": ["William Shakespeare", "Jane Austen", "Charles Dickens", "Mark Twain"],
+        "correct": "William Shakespeare"
+    },
+    {
+        "ques": "What is the largest planet in our solar system?",
+        "opt": ["Jupiter", "Saturn", "Mars", "Earth"],
+        "correct": "Jupiter"
+    },
+    {
+        "ques": "Which famous scientist formulated the laws of motion?",
+        "opt": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Marie Curie"],
+        "correct": "Isaac Newton"
+    }
+];
+let sumArr = [];
+
+                   // Cloning 
+		 function mainLogic(arr){
+		       let mainTemplate = document.getElementById('Top-template');
+			   
+			    let copyTemplate = mainTemplate.content.cloneNode(true);
+
+				   // Printing Question
+		   const mainQuestion = copyTemplate.getElementById('question-main');
+		     mainQuestion.innerHTML=arr.ques;
+				    // Accessing submit and radio
+		  let submit = copyTemplate.getElementById('submit-button');
+		  let radioButton = copyTemplate.querySelector('.label');
+		     
+			           // Printing Options
+			 let options = arr.opt;
+		       for (let j=0;j<options.length ;j++ )
+		       {
+				 let option = copyTemplate.getElementById(`label-${j}`);
+				 let Values = copyTemplate.getElementById(`option-${j}`);	 
+                    option.innerHTML = options[j];
+
+					option.addEventListener('click',()=>{
+						submit.value=options[j];
+                        Values.value = options[j];
+						console.log(Values.value);
+						event.stopPropagation();
+						//radioButton.checked =true;
+					})
+					
+		       }
+			   
+
+			   
+
+			   // Logic for submit button
+               let sum = 0;
+			   
+			   submit.addEventListener('click',()=>{
+				   event.preventDefault();
+				   if(submit.value == '' || submit.value != arr.correct)
+				   {
+					  console.log(sum=sum+0);
+				   }
+				   else{
+					    
+				  sumArr.push('10');
+				  console.log(sumArr);
+				   }
+			   })
+			   
+			    // Radiobutton Logic
+          
+		  //radioButton.forEach(()=>{
+             // event.preventDefault();
+			  //radioButton.checked = true;
+
+		  //})
+                 
+                
+				//console.log(sumArr);
+
+
+
+			   let parent = document.getElementById('parent-div');
+			    parent.append(copyTemplate);
+		 }
+ 
+
+
+
+
+                  // Calling function
+		 for(let i=0;i<questions.length;i++)
+		 {
+			 mainLogic(questions[i]);
+		 }
          
-         
-         
-         //function quizLogic(arr){
-         
-          //let ParentDiv = document.getElementById('parent-div');
-         		//let MainTemplate = document.getElementById('main-body-template');
-         		  // let template = MainTemplate.content.cloneNode(true);
-          // console.log(template);
-         
-         	//ParentDiv.append(template);
-         	//{
-         
-         let i=0;
-         console.log(question1[i].opt[3]);
-         let question = question1.forEach((a)=>{
-         
-         
-         let mainQuestion = document.getElementById('Main-question');
-         let submit = document.getElementById('submit-button');
-         let toggle = document.getElementById('toggle-p');
-         
-         
-         
-         mainQuestion.innerHTML = question1[i].ques;
-         //console.log(question1[i].opt[0]);
-         let option = document.getElementById('first-label');
-         option.innerHTML = question1[i].opt[0];
-         option.addEventListener('click',()=>{
-         submit.value=question1[i].opt[0];
-         console.log(question1[0].opt[0]);
-         })
-         let option1 = document.getElementById('second-label');
-         option1.innerHTML = question1[i].opt[1];
-         option1.addEventListener('click',()=>{
-         submit.value=question1[i].opt[1];
-         console.log(question1[i].opt[1]);
-         
-         })
-         let option2 = document.getElementById('third-label');
-         option2.innerHTML = question1[i].opt[2];
-         option2.addEventListener('click',()=>{
-         submit.value=question1[i].opt[2];
-         console.log(question1[i].opt[2]);
-         
-         })
-         let option3 = document.getElementById('forth-label');
-         option3.innerHTML = question1[i].opt[3];
-         option3.addEventListener('click',()=>{
-         submit.value=question1[i].opt[3];
-         console.log(question1[i].opt[3]);
-         
-         })
-         
-         let totalMarks=0;
-         submit.addEventListener('click',()=>{
-         if(submit.value==''){
-         	alert('Please Select Answer');
-         }
-         else if(submit.value==question1[i].correct)
-         	{
-         		let marks= totalMarks+10;
-				toggle.innerHTML="Total Marks: "+marks;
-         		toggle.classList.add('right');
-         		event.preventDefault();
-         	}
-         	else{
-                 toggle.classList.add('wrong');
-         		 toggle.innerHTML='Wrong :( ';
-				 let marks= totalMarks+0;
-				 toggle.innerHTML="Total Marks: "+marks;
-         		 event.preventDefault();
-         	}
-         })
-         
-         
-         
-         let Firstoption = document.getElementById('first-option');
-         Firstoption.value = question1[i].opt[0];
-         let Secondoption = document.getElementById('Second-option');
-         Secondoption.value = question1[i].opt[1];
-         let Thirdoption = document.getElementById('third-option');
-         Thirdoption.value = question1[i].opt[2];
-         let Forthoption = document.getElementById('forth-option');
-         Forthoption.value = question1[i].opt[3];
-         
-         console.log('Total marks are: ', marks );
-         
-         }
-         );
-         	//};
-         
-         //};
-         
-         //quizLogic(question1);
-         
-         
+		 function timer(){
+			 let minutes=10;
+			 let second = 60;
+			  
+			 for(let j=0;j<10;j++)
+			 {
+			   for(let i=0;i<60;i++)
+				 {
+					setTimeout(()=>{console.log('Minutes',j,'Second',i)},1000*i);
+					
+				 }
+				 }
+		 
+
+			 //console.log(res);
+		 }
+     timer();
       </script>
    </body>
 </html>
-
-
-
-
-Certainly! If you want to create a project in simple JavaScript before moving on to React, here's a project idea that covers various aspects of JavaScript:
-
-**Project: Interactive Quiz App**
-
-**Features to Implement:**
-
-1. Display questions and multiple-choice options.
-2. Allow the user to select an option.
-3. Display the user's score after completing the quiz.
-4. Add a timer for each question.
-5. Implement a "Next" button to move to the next question.
-6. Track the user's progress through the quiz.
-
-**Topics Covered:**
-
-1. **DOM Manipulation:**
-   - Create HTML elements to display questions, options, and scores.
-   - Use JavaScript to manipulate the DOM to update content based on user interactions.
-
-2. **Event Handling:**
-   - Attach event listeners to buttons and options to handle user input.
-
-3. **Arrays and Objects:**
-   - Store quiz questions and options in data structures (arrays and objects).
-
-4. **Conditional Statements:**
-   - Use conditional statements to check the user's answer and calculate the score.
-
-5. **Timers:**
-   - Implement a countdown timer for each question using JavaScript's `setInterval`.
-
-6. **Progress Tracking:**
-   - Keep track of the user's progress through the quiz and update the UI accordingly.
-
-7. **Styling:**
-   - Apply CSS styles to create an attractive and user-friendly interface.
-
-**Project Steps:**
-
-1. Create the HTML structure for the quiz interface.
-2. Define an array of quiz questions, each containing the question text, options, and the correct answer.
-3. Use JavaScript to display the first question and its options.
-4. Implement event listeners for option buttons to check the user's answer and update the score.
-5. Add a timer that counts down for each question.
-6. Display the user's score after completing all the questions.
-7. Implement a "Next" button to move to the next question.
-8. Update the UI to show the user's progress and remaining time.
-
-This project will help you solidify your understanding of core JavaScript concepts 
-like DOM manipulation, event handling, arrays, objects, conditionals, and timers. 
-It's a great stepping stone before diving into more complex libraries and frameworks like React.
